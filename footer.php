@@ -1,5 +1,5 @@
 		<div id="footer"></div>
-    <?php wp_footer(); ?>
+
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
@@ -46,5 +46,6 @@
 			    }
 			});
 		</script>
+<?php wp_footer();?>
 	</body>
 </html>
