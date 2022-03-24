@@ -166,11 +166,13 @@
 		<div id="top-color-splash"></div>
 
 		<div class="normal-wrapper">
-			<div class="one-third">
+<div class="one		-third">
 <b>"Font size:"</b> 
 <button id="btn-decrease" class="sticky-btn btn-dec btn" title="Reduce font size">A</button>
 <button id="btn-orig" class="sticky-btn btn-orig btn" title="Restore font size">A</button>
 <button id="btn-increase" class="sticky-btn btn-inc btn" title="Increase font size">A</button>
+<a href=”javascript:zoominLetter();”>A</a>
+<a href=”javascript:zoomoutLetter();”>a</a>
 				<h2 class="no-margin-top">Welcome!</h2>
 				<p>Noise Media is a technology company specialising in tech reviews.</p>
 				<p>We’re very good at what we do, but unfortunately, we are not a real company.</p>
@@ -265,5 +267,87 @@
 			    }
 			});
 		</script>
+<script type=”text/javascript”>
+var min=8;
+var max=18;
+function zoominLetter() {
+var p = document.getElementsByTagName(‘p’);
+for(i=0;i<p.length;i++) {
+if(p[i].style.fontSize) {
+var s = parseInt(p[i].style.fontSize.replace(“px”,”"));
+} else {
+var s = 12;
+}
+if(s!=max) {
+s += 1;
+}
+p[i].style.fontSize = s+”px”
+}
+}
+function zoomoutLetter() {
+var p = document.getElementsByTagName(‘p’);
+for(i=0;i<p.length;i++) {
+if(p[i].style.fontSize) {
+var s = parseInt(p[i].style.fontSize.replace(“px”,”"));
+} else {
+var s = 12;
+}
+if(s!=min) {
+s -= 1;
+}
+p[i].style.fontSize = s+”px”
+}
+}
+		<script>
+			$(document).ready(function () {
+				$(window).scroll(function () {
+					if ($(this).scrollTop() > 20) {
+						$('#toTopBtn').fadeIn();
+					} else {
+						$('#toTopBtn').fadeOut();
+					}
+				});
+
+				$('#toTopBtn').click(function () {
+					$("html, body").animate({
+						scrollTop: 0
+					}, 1000);
+					return false;
+				});
+			});
+		</script>
+	
+	
+		<script>
+			var $affectedElements = $("p,h1,h2,h3,h4,li"); // Can be extended, ex. $("div, p, span.someClass")
+
+			// Storing the original size in a data attribute so size can be reset
+			$affectedElements.each(function () {
+				var $this = $(this);
+				$this.data("orig-size", $this.css("font-size"));
+			});
+
+			$("#btn-increase").click(function () {
+				changeFontSize(2);
+			})
+
+			$("#btn-decrease").click(function () {
+				changeFontSize(-2);
+			})
+
+			$("#btn-orig").click(function () {
+				$affectedElements.each(function () {
+					var $this = $(this);
+					$this.css("font-size", $this.data("orig-size"));
+				});
+			})
+
+			function changeFontSize(direction) {
+				$affectedElements.each(function () {
+					var $this = $(this);
+					$this.css("font-size", parseInt($this.css("font-size")) + direction);
+				});
+			}
+</script>
 	</body>
 </html>
